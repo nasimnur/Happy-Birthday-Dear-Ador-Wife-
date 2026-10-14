@@ -3,45 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শুভ জন্মদিন হাসিনা! ❤️</title>
+    <title>শুভ জন্মদিন Hasina! ❤️</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            height: 100vh;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Envelope / Start Screen */
+        .envelope-container {
             text-align: center;
-            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            max-width: 90%;
-            width: 400px;
-            transform: scale(0.9);
-            animation: popup 0.8s ease-in-out forwards;
+        .envelope-container:hover {
+            transform: scale(1.05);
         }
 
-        @keyframes popup {
-            to {
-                transform: scale(1);
-            }
+        .envelope {
+            width: 280px;
+            height: 180px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            border: 3px solid #ff4b2b;
         }
 
-        .heart {
-            font-size: 50px;
-            animation: beat 1s infinite alternate;
+        .envelope-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .envelope p {
+            color: #ff4b2b;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Main Gift Card */
+        .card-container {
+            display: none;
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: openCard 0.8s ease-in-out forwards;
+        }
+
+        @keyframes openCard {
+            from { opacity: 0; transform: scale(0.7) translateY(50px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .heart-beat {
+            font-size: 55px;
+            animation: beat 0.8s infinite alternate;
         }
 
         @keyframes beat {
@@ -49,80 +92,134 @@
         }
 
         h1 {
-            color: #ff4b2b;
-            margin: 15px 0;
+            color: #d63031;
             font-size: 26px;
+            margin: 15px 0 10px;
         }
 
-        p {
-            color: #555;
+        .subtitle {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Dynamic Message Box */
+        .msg-box {
+            background: #fff0f3;
+            border-left: 5px solid #ff4b2b;
+            padding: 18px;
+            border-radius: 12px;
+            color: #2d3436;
             font-size: 16px;
             line-height: 1.6;
+            margin-bottom: 25px;
+            min-height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            box-shadow: inset 0 0 10px rgba(255,182,193,0.3);
         }
 
         .btn {
-            margin-top: 25px;
-            padding: 12px 28px;
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
             color: white;
             border: none;
+            padding: 14px 30px;
             border-radius: 50px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
-            transition: 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
+            transition: 0.3s;
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 75, 43, 0.6);
+            box-shadow: 0 12px 25px rgba(255, 75, 43, 0.6);
         }
 
-        #message {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background: #ffe6e6;
-            border-radius: 10px;
-            color: #d63031;
-            font-weight: 600;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .step-counter {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #888;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="heart">💖</div>
-        
-        <h1>শুভ জন্মদিন, Hasina! 🎂</h1>
-        
-        <p>আমার জীবনের সবচেয়ে সুন্দর উপহারটি হলো তুমি। আজকের দিনটি তোমার জন্য ভালোবাসায় ভরপুর থাকুক!</p>
-
-        <button class="btn" onclick="showSurprise()">এখানে চাপ দাও ✨</button>
-
-        <div id="message">
-            ❤️ প্রিয় Hasina, তোমার প্রতিটি হাসি আমার দিন উজ্জ্বল করে তোলে। সারাজীবন এভাবেই পাশে থেকো। অনেক অনেক ভালোবাসি তোমায়! 🎁🎉
+    <!-- ১. উপহারের খাম স্ক্রিন -->
+    <div class="envelope-container" id="envelopeScreen" onclick="openGift()">
+        <div class="envelope">
+            <div class="envelope-icon">💌</div>
+            <p>Hasina-এর জন্য গোপন বার্তা 🎁</p>
+            <span style="font-size:12px; color:#888; margin-top:5px;">(খুলতে এখানে চাপ দাও)</span>
         </div>
     </div>
 
-    <!-- Confetti Animation JS -->
+    <!-- ২. মূল বার্থডে কার্ড -->
+    <div class="card-container" id="cardScreen">
+        <div class="heart-beat">💖</div>
+        <h1>শুভ জন্মদিন, Hasina! 🎂</h1>
+        <p class="subtitle">আমার জীবনের সবচেয়ে প্রিয় মানুষটি তুমি ✨</p>
+
+        <!-- ভালোবাসার মেসেজ বক্স -->
+        <div class="msg-box" id="msgText">
+            ❤️ তোমার জন্মদিন কেবল তোমার আনন্দের দিন নয়, আমার কাছে তোমাকে পাওয়ার বিশেষ একটি দিন!
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="nextMessage()">পরের বার্তাটি দেখ 💌</button>
+        <div class="step-counter" id="stepText">বার্তা ১ / ৪</div>
+    </div>
+
+    <!-- Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        function showSurprise() {
-            document.getElementById('message').style.display = 'block';
+        // ভালোবাসার সুন্দর মেসেজের লিস্ট
+        const messages = [
+            "❤️ তোমার জন্মদিন কেবল তোমার আনন্দের দিন নয়, আমার কাছে তোমাকে পাওয়ার বিশেষ একটি দিন!",
+            "🌸 তোমার প্রতিটি সুন্দর হাসি আমার পুরো দিনকে আলোতে ভরিয়ে দেয়। সারাজীবন এভাবেই থেকো।",
+            "✨ জীবনের সব চাওয়া-পাওয়া পূর্ণ হোক তোমার। সব কষ্ট দূরে গিয়ে তোমার পথ ভালোবাসায় ভরে উঠুক।",
+            "💍 আজ তোমার জন্মদিনে শুধু এটুকুই বলব— আমি তোমাকে প্রতিটি মুহূর্তে অনেক ভালোবাসি! শুভ জন্মদিন আমার হাসিনা 💖🎉"
+        ];
 
+        let currentStep = 0;
+
+        function openGift() {
+            document.getElementById('envelopeScreen').style.display = 'none';
+            document.getElementById('cardScreen').style.display = 'block';
+            
+            // কনফেটি বৃষ্টি
             confetti({
-                particleCount: 100,
-                spread: 70,
+                particleCount: 120,
+                spread: 80,
                 origin: { y: 0.6 }
             });
+        }
+
+        function nextMessage() {
+            currentStep++;
+            
+            if (currentStep < messages.length) {
+                document.getElementById('msgText').innerHTML = messages[currentStep];
+                document.getElementById('stepText').innerText = `বার্তা ${currentStep + 1} / ${messages.length}`;
+                
+                // হাল্কা অ্যানিমেশন
+                confetti({
+                    particleCount: 60,
+                    spread: 60,
+                    origin: { y: 0.7 }
+                });
+
+                if(currentStep === messages.length - 1) {
+                    document.getElementById('nextBtn').innerText = "আবার শুরু থেকে দেখ 🔄";
+                }
+            } else {
+                currentStep = 0;
+                document.getElementById('msgText').innerHTML = messages[currentStep];
+                document.getElementById('stepText').innerText = `বার্তা ${currentStep + 1} / ${messages.length}`;
+                document.getElementById('nextBtn').innerText = "পরের বার্তাটি দেখ 💌";
+            }
         }
     </script>
 </body>
