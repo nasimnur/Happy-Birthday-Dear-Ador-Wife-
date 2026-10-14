@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শুভ জন্মদিন হাসিনা! ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            max-width: 90%;
+            width: 400px;
+            transform: scale(0.9);
+            animation: popup 0.8s ease-in-out forwards;
+        }
+
+        @keyframes popup {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .heart {
+            font-size: 50px;
+            animation: beat 1s infinite alternate;
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.2); }
+        }
+
+        h1 {
+            color: #ff4b2b;
+            margin: 15px 0;
+            font-size: 26px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 12px 28px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 75, 43, 0.6);
+        }
+
+        #message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffe6e6;
+            border-radius: 10px;
+            color: #d63031;
+            font-weight: 600;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="heart">💖</div>
+        
+        <h1>শুভ জন্মদিন, Hasina! 🎂</h1>
+        
+        <p>আমার জীবনের সবচেয়ে সুন্দর উপহারটি হলো তুমি। আজকের দিনটি তোমার জন্য ভালোবাসায় ভরপুর থাকুক!</p>
+
+        <button class="btn" onclick="showSurprise()">এখানে চাপ দাও ✨</button>
+
+        <div id="message">
+            ❤️ প্রিয় Hasina, তোমার প্রতিটি হাসি আমার দিন উজ্জ্বল করে তোলে। সারাজীবন এভাবেই পাশে থেকো। অনেক অনেক ভালোবাসি তোমায়! 🎁🎉
+        </div>
+    </div>
+
+    <!-- Confetti Animation JS -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        function showSurprise() {
+            document.getElementById('message').style.display = 'block';
+
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+</body>
+</html>
