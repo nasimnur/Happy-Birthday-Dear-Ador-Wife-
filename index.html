@@ -18,8 +18,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            overflow: hidden;
+            position: relative;
             padding: 20px;
+        }
+
+        /* Floating Hearts Animation Background */
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floatUp 6s linear infinite;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
 
         /* Envelope / Start Screen */
@@ -27,6 +43,7 @@
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s;
+            z-index: 10;
         }
 
         .envelope-container:hover {
@@ -34,11 +51,11 @@
         }
 
         .envelope {
-            width: 280px;
-            height: 180px;
+            width: 290px;
+            height: 190px;
             background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -48,20 +65,20 @@
         }
 
         .envelope-icon {
-            font-size: 60px;
+            font-size: 65px;
             margin-bottom: 10px;
             animation: bounce 1.5s infinite;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
         }
 
         .envelope p {
             color: #ff4b2b;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 17px;
         }
 
         /* Main Gift Card */
@@ -72,13 +89,14 @@
             background: rgba(255, 255, 255, 0.95);
             border-radius: 25px;
             padding: 30px 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             text-align: center;
             animation: openCard 0.8s ease-in-out forwards;
+            z-index: 10;
         }
 
         @keyframes openCard {
-            from { opacity: 0; transform: scale(0.7) translateY(50px); }
+            from { opacity: 0; transform: scale(0.6) translateY(50px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
@@ -88,7 +106,7 @@
         }
 
         @keyframes beat {
-            to { transform: scale(1.2); }
+            to { transform: scale(1.25); }
         }
 
         h1 {
@@ -148,11 +166,19 @@
 </head>
 <body>
 
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a7321d.mp3?filename=happy-birthday-155461.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Hearts Background Container -->
+    <div id="heartsContainer"></div>
+
     <!-- ১. উপহারের খাম স্ক্রিন -->
     <div class="envelope-container" id="envelopeScreen" onclick="openGift()">
         <div class="envelope">
             <div class="envelope-icon">💌</div>
-            <p>Hasina-এর জন্য গোপন বার্তা 🎁</p>
+            <p>Hasina-Tomar জন্য ছোট্ট বিশেষ উপহার 🎁</p>
             <span style="font-size:12px; color:#888; margin-top:5px;">(খুলতে এখানে চাপ দাও)</span>
         </div>
     </div>
@@ -175,7 +201,7 @@
     <!-- Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        // ভালোবাসার সুন্দর মেসেজের লিস্ট
+        // ভালোবাসার মেসেজ তালিকা
         const messages = [
             "❤️ তোমার জন্মদিন কেবল তোমার আনন্দের দিন নয়, আমার কাছে তোমাকে পাওয়ার বিশেষ একটি দিন!",
             "🌸 তোমার প্রতিটি সুন্দর হাসি আমার পুরো দিনকে আলোতে ভরিয়ে দেয়। সারাজীবন এভাবেই থেকো।",
@@ -185,11 +211,30 @@
 
         let currentStep = 0;
 
+        // Floating Hearts Generator
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-bg');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
         function openGift() {
             document.getElementById('envelopeScreen').style.display = 'none';
             document.getElementById('cardScreen').style.display = 'block';
             
-            // কনফেটি বৃষ্টি
+            // মিউজিক চালু করা
+            const audio = document.getElementById('bgMusic');
+            audio.play().catch(e => console.log("Audio play blocked"));
+
+            // কনফেটি উড়ানো
             confetti({
                 particleCount: 120,
                 spread: 80,
@@ -204,7 +249,6 @@
                 document.getElementById('msgText').innerHTML = messages[currentStep];
                 document.getElementById('stepText').innerText = `বার্তা ${currentStep + 1} / ${messages.length}`;
                 
-                // হাল্কা অ্যানিমেশন
                 confetti({
                     particleCount: 60,
                     spread: 60,
@@ -217,10 +261,4 @@
             } else {
                 currentStep = 0;
                 document.getElementById('msgText').innerHTML = messages[currentStep];
-                document.getElementById('stepText').innerText = `বার্তা ${currentStep + 1} / ${messages.length}`;
-                document.getElementById('nextBtn').innerText = "পরের বার্তাটি দেখ 💌";
-            }
-        }
-    </script>
-</body>
-</html>
+                document
